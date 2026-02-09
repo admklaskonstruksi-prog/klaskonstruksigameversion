@@ -30,7 +30,7 @@ export function BunnyVideoPlayer({
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showControls, setShowControls] = useState(true);
-  const hideControlsTimeout = useRef<NodeJS.Timeout>();
+  const hideControlsTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const cdnHostname = process.env.NEXT_PUBLIC_BUNNY_STREAM_CDN_HOSTNAME;
   const videoSrc = cdnHostname
