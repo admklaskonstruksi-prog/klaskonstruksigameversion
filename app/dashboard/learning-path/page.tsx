@@ -81,8 +81,8 @@ export default async function LearningPathPage({
         nextChapterInCourse = {
           id: nextChapter.id,
           title: nextChapter.title,
-          courseTitle: nextChapter.courses?.title ?? "",
-          courseId: nextChapter.courses?.id ?? courseId,
+          courseTitle: nextChapter.courses?.[0]?.title ?? "",
+          courseId: nextChapter.courses?.[0]?.id ?? courseId,
           level: nextChapter.level ?? 0,
           price: nextChapter.price ?? 0,
           owned: enrolledChapterIds.has(nextChapter.id),
