@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* KEMBALIKAN KE WARNA STANDAR (Putih/Hitam) */
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* UTILITIES KHUSUS (TETAP DISIMPAN UNTUK HOMEPAGE) */
+@layer utilities {
+  .header-blend-mask {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+
+  .bg-cyber-grid-subtle {
+    background-image: 
+      linear-gradient(to right, rgba(255, 34, 34, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 34, 34, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  
+  .clip-tech-corner {
+    clip-path: polygon(
+      0 15px, 15px 0, 
+      100% 0, 100% calc(100% - 15px), 
+      calc(100% - 15px) 100%, 0 100%
+    );
+  }
+  
+  /* Text Gradient Anime: Merah -> Oranye -> Kuning */
+  .text-anime-gradient {
+    background: linear-gradient(to right, #ff2222, #ff7b00, #ffbf00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 150% auto;
+    animation: shine 5s linear infinite;
+  }
+
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
+}
