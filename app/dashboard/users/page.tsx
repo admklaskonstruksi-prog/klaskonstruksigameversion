@@ -8,6 +8,8 @@ export const dynamic = "force-dynamic";
 export default async function ManageUsersPage() {
   const supabase = await createClient();
   const { data: { user: me } } = await supabase.auth.getUser();
+  
+  // Cek apakah user yang login adalah admin
   const { data: myProfile } = await supabase
     .from("profiles")
     .select("role")
@@ -16,9 +18,10 @@ export default async function ManageUsersPage() {
 
   if (myProfile?.role !== "admin") redirect("/dashboard");
 
+  // PERBAIKAN: Menambahkan kolom 'email' ke dalam select
   const { data: profiles, error } = await supabase
     .from("profiles")
-    .select("id, full_name, role, created_at")
+    .select("id, full_name, role, created_at, email") 
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -68,6 +71,7 @@ export default async function ManageUsersPage() {
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 font-bold flex items-center justify-center text-sm">
+                          {/* Kode di bawah aman karena 'email' sudah di-select */}
                           {(p.full_name || p.email || "?").charAt(0).toUpperCase()}
                         </div>
                         <span className="font-medium text-gray-900">
